@@ -8,31 +8,29 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
       background-color: #aed6f1;
     }
+    .btn-primary{
+        color: black;
+        background-color: #aed6f1;
+    }
     
-    /* Add a gray background color and some padding to the footer */
     footer {
       background-color: #0f0909;
       padding: 25px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 60px; 
     }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
+   
+  .container {
+    padding-top: 20px;
   }
 
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-    }
-  }
   </style>
 </head>
 <body>
@@ -58,28 +56,17 @@
   </div>
 </nav>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="" alt="Image">
-        <div class="carousel-caption">
-          <h3>Sell $</h3>
-          <p>Money Money.</p>
-        </div>      
-      </div>
-
+<div  class="container text-center">
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary btn-lg"> Add Task</button>
+        </div>
     </div>
+    
 </div>
   
 <div class="container text-center">    
-  <h3>What We Do</h3><br>
+  <h3>Tasks report</h3><br>
   <div class="row">
     <div class="col-sm-4">
         <div class="well">

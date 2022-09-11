@@ -147,13 +147,14 @@
                     <br>
                     <div id="days">
                         <label class="form-label">Select days</label><br>
-                        <input class="daycb" type="checkbox" value="sundays" name="days[]"><span> Sundays</span>
-                        <input class="daycb" type="checkbox"  value="mondays" name="days[]"><span> Mondays</span>
-                        <input class="daycb" type="checkbox" value="tuesdays"  name="days[]"><span> Tuesdays</span>
-                        <input class="daycb" type="checkbox"  value="wednesdays" name="days[]"><span> Wednesdays</span>
-                        <input class="daycb" type="checkbox"  value="thursdays" name="days[]"><span> Thursdays</span>
-                        <input class="daycb" type="checkbox"  value="fridays" name="days[]"><span> Fridays</span>
-                        <input class="daycb" type="checkbox"  value="saturdays" name="days[]"><span> Saturdays</span><br/>
+                        <input class="daycb" type="checkbox" value="Null" name="days"><span> Every Day</span>
+                        <input class="daycb" type="checkbox" value="7" name="days"><span> Sundays</span>
+                        <input class="daycb" type="checkbox"  value="1" name="days"><span> Mondays</span>
+                        <input class="daycb" type="checkbox" value="2"  name="days"><span> Tuesdays</span>
+                        <input class="daycb" type="checkbox"  value="3" name="days"><span> Wednesdays</span>
+                        <input class="daycb" type="checkbox"  value="4" name="days"><span> Thursdays</span>
+                        <input class="daycb" type="checkbox"  value="5" name="days"><span> Fridays</span>
+                        <input class="daycb" type="checkbox"  value="6" name="days"><span> Saturdays</span><br/>
                     </div>
                     <input type="radio" name="customize" class="cust"><span class="cust"> More options</span>
                 </div>

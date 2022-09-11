@@ -60,7 +60,6 @@ class Controller extends BaseController
         elseif($recurring == 1){
             // set task for recurring tasks
             $recureTasks = new Task;
-            $recureTasks = new Task();
             $recureTasks->task = $request->task;
             $recureTasks->description = $request->description;
             $recureTasks->startdate = $request->startdate;
@@ -68,10 +67,25 @@ class Controller extends BaseController
             $recureTasks->recurring = $recurring;
             $recureTasks->status = 0; // 0 pending 1 completed
             $recureTasks->save();
+            // store recurring task on tasks_meta datatable using the task_id gotten from Task table 
+            $meta = new TaskMeta;
+            $meta->task_id = $recureTasks->id;
+            $meta->repeat_start = $request->startdate;
+            // differentiate between daily and spcific day task 
+            $meta->repeat_interval = $request->days == 'Null' ? 7 : NULL;
+            $meta->repeat_weekday = $request->days !== 'Null' ? $request->days : NULL;
 
-            // get the task id.
+            // monthly {Set the conditions}
+            $now = Carbon::now();
+            $meta->repeat_year = $now->year;
+            $meta->repeat_day = $request->day;
+
+            // yearly  [Set the conditions]
 
 
+            $meta->save();
+
+            return response()->json(['error' => false, 'message' => 'Task Created Successfully']);
 
         }
         else{

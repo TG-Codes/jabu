@@ -52,10 +52,14 @@ class Controller extends BaseController
             $oneOff->startdate = $request->startdate;
             $oneOff->duedate = $request->duedate;
             $oneOff->recurring = $recurring;
-            $oneOff->status = 0;
+            $oneOff->status = 0; // 0 pending 1 completed
             $oneOff->save();
             return response()->json(['error' => false, 'message' => 'Task Created Successfully']);
       
+        }
+        elseif($recurring == 1){
+            // set task for recurring tasks 
+
         }
         else{
             return response()->json(['error' => true, 'message' => 'Due date is required for a non recurring task']);

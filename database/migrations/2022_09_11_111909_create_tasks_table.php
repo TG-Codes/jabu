@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->date('startdate')->nullable();
             $table->date('duedate')->nullable();
             $table->string('recurring')->nullable(); // 0 false 1 true
-            $table->string('status')->nullable(); // 0 false 1 true
+            $table->string('status')->nullable(); // 0 pending  1 completed
             $table->timestamps();
         });
     }

@@ -9,6 +9,10 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       <style>
+
+        body{
+          height: 100vh;
+        }
          .navbar {
          margin-bottom: 0;
          border-radius: 0;
@@ -40,6 +44,35 @@
             display: none;
             cursor: pointer;
             text-decoration: underline;
+         }
+         
+         .task-card{
+            min-height: 20px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #e3e3e3;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+         }
+         .ml-5{
+            margin-left: 1rem;
+         }
+
+         .ml-7{
+            margin-left: 1.5rem;
+         }
+         .right{
+            float: right;
+         }
+
+         .clickable{
+            cursor: pointer;
+         }
+         .tasks{
+           max-height: 45vh;
+           overflow: scroll;
          }
       </style>
    </head>

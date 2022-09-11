@@ -13,6 +13,8 @@ class Task extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'tasks';
+    protected $primarykey = 'id';
     protected $fillable = [
         'task',
         'description',
@@ -21,7 +23,8 @@ class Task extends Model
         'recurring',
         'period',
         'day',
-        'month'
+        'month',
+        'status'
     ];
 
     /**

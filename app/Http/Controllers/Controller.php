@@ -12,6 +12,18 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function view(){
+        //$today = date('Y-m-d');
+        //$tomorrow = date('Y-m-d', strtotime($today. ' + 1 day')); 
+        //$nextweek = date('Y-m-d', strtotime($tomorrow. ' + 7 days')); 
+        //$todayquery = 'duedate <= '.$today.' AND status = "completed"';
+        //$tomorrowquery = 'duedate <= '.$tomorrow.' AND status = "completed"';
+        //$nextquery = 'duedate <= '.$nextweek.' AND status = "completed"';
+        //$data['todaystasks'] = Task::select('*')->where($todayquery)->get();
+        //$data['tomorrow'] = Task::select('*')->where($tomorrowquery)->get();
+        //$data['tomorrow'] = Task::select('*')->where($nextquery)->get();
+        return view('index');
+    }
 
     public function submitTask(Request $request){
         $tovalidate = [
@@ -51,7 +63,4 @@ class Controller extends BaseController
         }
     }
 
-    public function view(){
-        return view('index');
-    }
 }

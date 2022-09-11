@@ -81,7 +81,9 @@ class Controller extends BaseController
             $meta->repeat_day = $request->day;
 
             // yearly  [Set the conditions]
-
+            $meta->repeat_year = $request->year;
+            $meta->repeat_day = $request->day;
+            $meta->repeat_month = $request->month;
 
             $meta->save();
 
@@ -92,39 +94,6 @@ class Controller extends BaseController
             return response()->json(['error' => true, 'message' => 'Due date is required for a non recurring task']);
         }
         
-
-
-
-
-
-        // if($request->recurring == 'yes'){
-        //     if($request->customize == 'on'){
-        //         $tovalidate['period'] = 'required';
-        //         $tovalidate['day'] = 'required';
-        //         if($request->period == 'yearly'){
-        //             $tovalidate['month'] = 'required';
-        //         }
-        //     }else{
-        //         $tovalidate['days'] = 'required';
-        //     }
-        // }
-        // $validator = Validator::make($request->all(), $tovalidate);
-        // if($validator->fails()){
-        //     return response()->json(['error' => true, 'message' => $validator->errors()]);
-        // }
-        // $tasks = array();
-        // foreach($request->all() as $key => $value){
-        //     if($key != '_token'){
-        //         $tasks[$key] = $value;
-        //     }
-        // }
-        // $task = new Task;
-        // $addtasks = $task->save($tasks);
-        // if($addtasks){
-        //     return response()->json(['error' => true, 'message' => 'Task added successfully']);
-        // }else{
-        //     return response()->json(['error' => true, 'message' => 'Something went wrong. Try again']);
-        // }
     }
 
 }

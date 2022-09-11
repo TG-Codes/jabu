@@ -58,7 +58,20 @@ class Controller extends BaseController
       
         }
         elseif($recurring == 1){
-            // set task for recurring tasks 
+            // set task for recurring tasks
+            $recureTasks = new Task;
+            $recureTasks = new Task();
+            $recureTasks->task = $request->task;
+            $recureTasks->description = $request->description;
+            $recureTasks->startdate = $request->startdate;
+            $recureTasks->duedate = $request->duedate;
+            $recureTasks->recurring = $recurring;
+            $recureTasks->status = 0; // 0 pending 1 completed
+            $recureTasks->save();
+
+            // get the task id.
+
+
 
         }
         else{

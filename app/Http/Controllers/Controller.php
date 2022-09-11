@@ -8,6 +8,10 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Task;
+use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Input;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -26,41 +30,60 @@ class Controller extends BaseController
     }
 
     public function submitTask(Request $request){
-        $tovalidate = [
+        $validator = Validator::make($request->all(), [
             'task' => 'required',
             'description' => 'required',
             'startdate' => 'required',
-            'duedate' => 'required',
-            'recurring' => 'required'
-        ];
-        if($request->recurring == 'yes'){
-            if($request->customize == 'on'){
-                $tovalidate['period'] = 'required';
-                $tovalidate['day'] = 'required';
-                if($request->period == 'yearly'){
-                    $tovalidate['month'] = 'required';
-                }
-            }else{
-                $tovalidate['days'] = 'required';
-            }
-        }
-        $validator = Validator::make($request->all(), $tovalidate);
-        if($validator->fails()){
+            'duedate' => 'sometimes|nullable',
+            'recurring' => 'required',
+        ]);
+        // ensure it passed validation rules
+        if ($validator->fails()) {
             return response()->json(['error' => true, 'message' => $validator->errors()]);
         }
-        $tasks = array();
-        foreach($request->all() as $key => $value){
-            if($key != '_token'){
-                $tasks[$key] = $value;
-            }
+        $recurring = $request->recurring == 'yes' ? 1 : 0;
+        $duedate = $request->duedate;
+        if($recurring == 0 && $duedate !== null){
+            // submit task with a due date 
+
         }
-        $task = new Task;
-        $addtasks = $task->save($tasks);
-        if($addtasks){
-            return response()->json(['error' => true, 'message' => 'Task added successfully']);
-        }else{
-            return response()->json(['error' => true, 'message' => 'Something went wrong. Try again']);
+        else{
+            return response()->json(['error' => true, 'message' => 'Due date is required for a non recurring task']);
         }
+        
+
+
+
+
+
+        // if($request->recurring == 'yes'){
+        //     if($request->customize == 'on'){
+        //         $tovalidate['period'] = 'required';
+        //         $tovalidate['day'] = 'required';
+        //         if($request->period == 'yearly'){
+        //             $tovalidate['month'] = 'required';
+        //         }
+        //     }else{
+        //         $tovalidate['days'] = 'required';
+        //     }
+        // }
+        // $validator = Validator::make($request->all(), $tovalidate);
+        // if($validator->fails()){
+        //     return response()->json(['error' => true, 'message' => $validator->errors()]);
+        // }
+        // $tasks = array();
+        // foreach($request->all() as $key => $value){
+        //     if($key != '_token'){
+        //         $tasks[$key] = $value;
+        //     }
+        // }
+        // $task = new Task;
+        // $addtasks = $task->save($tasks);
+        // if($addtasks){
+        //     return response()->json(['error' => true, 'message' => 'Task added successfully']);
+        // }else{
+        //     return response()->json(['error' => true, 'message' => 'Something went wrong. Try again']);
+        // }
     }
 
 }

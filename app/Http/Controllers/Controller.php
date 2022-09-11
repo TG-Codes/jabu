@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Task;
+use App\Models\TaskMeta;
 use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Input;
@@ -44,8 +45,17 @@ class Controller extends BaseController
         $recurring = $request->recurring == 'yes' ? 1 : 0;
         $duedate = $request->duedate;
         if($recurring == 0 && $duedate !== null){
-            // submit task with a due date 
-
+            // submit task with a due date
+            $oneOff = new Task();
+            $oneOff->task = $request->task;
+            $oneOff->description = $request->description;
+            $oneOff->startdate = $request->startdate;
+            $oneOff->duedate = $request->duedate;
+            $oneOff->recurring = $recurring;
+            $oneOff->status = 0;
+            $oneOff->save();
+            return response()->json(['error' => false, 'message' => 'Task Created Successfully']);
+      
         }
         else{
             return response()->json(['error' => true, 'message' => 'Due date is required for a non recurring task']);

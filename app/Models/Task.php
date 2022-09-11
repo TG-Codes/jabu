@@ -21,9 +21,6 @@ class Task extends Model
         'startdate',
         'duedate',
         'recurring',
-        'period',
-        'day',
-        'month',
         'status'
     ];
 

@@ -31,50 +31,30 @@
          <div>
                <h4>All tasks</h4>
                <ul class="nav nav-tabs">
+                  <li role="presentation"><a href="#overdue" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Overdue</a></li>
                   <li role="presentation" class="active"><a href="#today" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Due today</a></li>
                   <li role="presentation"><a href="#tommorrow" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Due tomorrow</a></li>
                   <li role="presentation"><a href="#nextweek" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Due next week</a></li>
-                  <li role="presentation"><a href="#complete" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Completed</a></li>
+                  <li role="presentation"><a href="#completed" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Completed</a></li>
                 </ul>
                <div class="tab-content tasks">
+                  <div class="tab-pane fade in" role=tabpanel id="overdue" aria-labelledby="today-tab">
+                  </div>
                   <!--Today tasks -->
                   <div class="tab-pane fade in active" role=tabpanel id="today" aria-labelledby="today-tab">
-                     <div class="task-card">
-                        <i class="fa-solid fa-check clickable text-success"></i>
-                        <span class="ml-5 lead">Build an app to store data today</span>
-                        <span class="right"><i class="fa-regular fa-eye fa-2x ml-7 clickable"></i></span>
-                        <span class="right">started 09/09/2022</span>
-                     </div>
                   </div>
                   <!--End today tasks -->
                   <!--Tomorrow tasks -->
                   <div class="tab-pane fade in" role=tabpanel id="tommorrow" aria-labelledby="tommorrow-tab">
-                     <div class="task-card">
-                        <i class="fa-solid fa-check clickable"></i>
-                        <span class="ml-5 lead">Build an app to store data tomorrow</span>
-                        <span class="right"><i class="fa-regular fa-eye fa-2x ml-7 clickable"></i></span>
-                        <span class="right">started 09/09/2022</span>
-                     </div>
                   </div>
                   <!--End Tomorrow tasks -->
                   <!--Next week tasks -->
                   <div class="tab-pane fade in" role=tabpanel id="nextweek" aria-labelledby="nextweek-tab">
-                     <div class="task-card">
-                        <i class="fa-solid fa-check clickable"></i>
-                        <span class="ml-5 lead">Build an app to store data next week</span>
-                        <span class="right"><i class="fa-regular fa-eye fa-2x ml-7 clickable"></i></span>
-                        <span class="right">started 09/09/2022</span>
-                     </div>
                   </div>
                   <!--End next week task -->
                   <!--Completed tasks -->
-                  <div class="tab-pane fade in" role=tabpanel id="complete" aria-labelledby="complete-tab">
-                     <div class="task-card">
-                        <i class="fa-solid fa-check clickable text-success"></i>
-                        <span class="ml-5 lead">Build an app to store data</span>
-                        <span class="right"><i class="fa-regular fa-eye fa-2x ml-7 clickable"></i></span>
-                        <span class="right">started 09/09/2022</span>
-                     </div>
+                  <div class="tab-pane fade in" role=tabpanel id="completed" aria-labelledby="complete-tab">
+
                   </div>
                   <!--End Completed task -->
                </div>

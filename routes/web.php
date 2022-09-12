@@ -17,3 +17,10 @@ use App\Http\Controllers\Controller;
 Route::get('/', [Controller::class, 'view'])->name('home');
 
 Route::post('addtask', [Controller::class, 'submitTask'])->name('submittask');
+Route::get('duetoday', [Controller::class, 'dueToday'])->name('duetoday');
+Route::get('overdue', [Controller::class, 'overdue'])->name('overdue');
+Route::get('duetomorrow', [Controller::class, 'dueTomorrow'])->name('duetomorrow');
+Route::get('duenextweek', [Controller::class, 'dueNextWeek'])->name('duenextweek');
+Route::get('completed', [Controller::class, 'completed'])->name('completed');
+Route::get('markcomplete/{id}', [Controller::class, 'markcomplete'])->name('markcomplete');
+Route::get('markuncomplete/{id}', [Controller::class, 'markcomplete'])->name('markuncomplete');

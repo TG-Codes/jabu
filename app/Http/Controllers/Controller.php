@@ -10,6 +10,7 @@ use Validator;
 use App\Models\Task;
 use App\Models\TaskMeta;
 use Carbon\Carbon;
+use DB;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Input;
 
@@ -18,15 +19,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function view(){
-        //$today = date('Y-m-d');
-        //$tomorrow = date('Y-m-d', strtotime($today. ' + 1 day')); 
-        //$nextweek = date('Y-m-d', strtotime($tomorrow. ' + 7 days')); 
-        //$todayquery = 'duedate <= '.$today.' AND status = "completed"';
-        //$tomorrowquery = 'duedate <= '.$tomorrow.' AND status = "completed"';
-        //$nextquery = 'duedate <= '.$nextweek.' AND status = "completed"';
-        //$data['todaystasks'] = Task::select('*')->where($todayquery)->get();
-        //$data['tomorrow'] = Task::select('*')->where($tomorrowquery)->get();
-        //$data['tomorrow'] = Task::select('*')->where($nextquery)->get();
         return view('index');
     }
 
@@ -90,9 +82,93 @@ class Controller extends BaseController
 
         }
         else{
-            return response()->json(['error' => true, 'message' => 'Due date is required for a non recurring task']);
+            return response()->json(['error' => true, 'message' => 'Due date is required for a non reocurring task']);
         }
         
     }
 
+    public function dueToday(){
+        $today = date('Y-m-d');
+        $todaystasks = Task::select('*')->where([
+            ['duedate', '=', $today],
+            ['status', '=', 0],
+        ])->get();
+        if(count($todaystasks)){
+            return response()->json(['error' => false, 'message' => $todaystasks]);
+        }else{
+            return response()->json(['error' => true, 'message' => 'No tasks due today']);
+        }
+    }
+
+    public function dueTomorrow(){
+        $today = date('Y-m-d');
+        $tomorrow = date('Y-m-d', strtotime($today. ' + 1 day'));
+        $tomorrowtasks = Task::select('*')->where([
+            ['duedate', '=', $tomorrow],
+            ['status', '=', 0],
+        ])->get();
+        if(count($tomorrowtasks)){
+            return response()->json(['error' => false, 'message' => $tomorrowtasks]);
+        }else{
+            return response()->json(['error' => true, 'message' => 'No tasks scheduled for tomorrow']);
+        }
+    }
+
+    public function dueNextWeek(){
+        $today = date('Y-m-d');
+        $nextweek = date('Y-m-d', strtotime('next sunday'));
+        $weekafternext = date('Y-m-d', strtotime($nextweek. ' + 7 days')); 
+        $nextwtasks = Task::select('*')->where([
+                ['duedate', '>=', $nextweek],
+                ['duedate', '<', $weekafternext],
+                ['duedate', '>', $today],
+                ['status', '=', 0],
+            ])->get();
+        if(count($nextwtasks)){
+            return response()->json(['error' => false, 'message' => $nextwtasks]);
+        }else{
+            return response()->json(['error' => true, 'message' => 'No tasks scheduled for next week']);
+        }
+    }
+
+    public function completed(){
+        $today = date('Y-m-d');
+        $todaystasks = Task::select('*')->where('status', 1)->get();
+        if(count($todaystasks)){
+            return response()->json(['error' => false, 'message' => $todaystasks]);
+        }else{
+            return response()->json(['error' => true, 'message' => 'No tasks due today']);
+        }
+    }
+
+    public function overdue(){
+        $today = date('Y-m-d');
+        $todaystasks = Task::select('*')->where([
+            ['duedate', '<', $today],
+            ['status', '=', 0],
+        ])->get();
+        if(count($todaystasks)){
+            return response()->json(['error' => false, 'message' => $todaystasks]);
+        }else{
+            return response()->json(['error' => true, 'message' => 'No tasks due today']);
+        }
+    }
+
+    public function markcomplete($id){
+        $markcomplete = Task::where('id', $id)->update(['status' => 1]);
+        if($markcomplete){
+            return response()->json(['error' => false, 'message' => 'marked complete']);
+        }else{
+            return response()->json(['error' => true, 'message' => 'something went wrong. try again']);
+        }
+    }
+
+    public function markuncomplete($id){
+        $markcomplete = Task::where('id', $id)->update(['status' => 0]);
+        if($markcomplete){
+            return response()->json(['error' => false, 'message' => '']);
+        }else{
+            return response()->json(['error' => true, 'message' => 'something went wrong. try again']);
+        }
+    }
 }

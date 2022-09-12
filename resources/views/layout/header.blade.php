@@ -94,12 +94,7 @@
        </div>
 
        <div class="modal-body">
-         <!-- <div class="text-center">
-           <i class="fa fa-file-text-o fa-4x mb-3 animated rotateIn"></i>
-         <div class="md-form">
-           <textarea type="text" id="form79textarea" class="md-textarea form-control" rows="3"></textarea>
-         </div> -->
-                <label class="form-label">Task title</label>
+                 <label class="form-label">Task title</label>
                 <input type="text" name="task" class="form-control" placeholder="Enter task title">
                 <label class="form-label">Description</label>
                 <textarea class="form-control" name="description" placeholder="Enter task description"></textarea>
@@ -350,7 +345,7 @@
         success: function(response){
             if(response.error == false){
               alert(response.message)
-               initTasks();
+               re initTasks();
             }else{
               alert(response.message)
             }

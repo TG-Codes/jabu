@@ -155,7 +155,7 @@ class Controller extends BaseController
     }
 
     public function markcomplete($id){
-        $markcomplete = Task::where('id', $id)->update(['status' => 1]);
+        $markcomplete = Task::where('id', $id)->update(['status' => 1, 'updated_at' => Carbon::now()]);
         if($markcomplete){
             return response()->json(['error' => false, 'message' => 'marked complete']);
         }else{
@@ -164,7 +164,7 @@ class Controller extends BaseController
     }
 
     public function markuncomplete($id){
-        $markcomplete = Task::where('id', $id)->update(['status' => 0]);
+        $markcomplete = Task::where('id', $id)->update(['status' => 0, 'updated_at' => Carbon::now()]);
         if($markcomplete){
             return response()->json(['error' => false, 'message' => '']);
         }else{

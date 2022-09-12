@@ -78,13 +78,12 @@ class Controller extends BaseController
             // monthly {Set the conditions}
             $now = Carbon::now();
             $meta->repeat_year = $now->year;
-            $meta->repeat_day = $request->day;
+            $meta->repeat_day = $request->day !== "" ? $request->day : NULL ;
 
             // yearly  [Set the conditions]
-            $meta->repeat_year = $request->year;
-            $meta->repeat_day = $request->day;
-            $meta->repeat_month = $request->month;
-
+            $meta->repeat_year = $request->year !== "" ? $request->year : NULL;
+            $meta->repeat_day = $request->day !== "" ? $request->day : NULL;
+            $meta->repeat_month = $request->month !== "" ? $request->month : NULL;
             $meta->save();
 
             return response()->json(['error' => false, 'message' => 'Task Created Successfully']);

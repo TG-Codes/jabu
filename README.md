@@ -1,1 +1,1 @@
-Task Schedular and management system.
+Task Schedular and management system built with PHP Laravel
